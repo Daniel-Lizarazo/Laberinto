@@ -44,7 +44,7 @@
 
       
   (define (comprobador a b);; a = valor en x // b = valor en y
-    (if {or (and (> a 244) (> b 24) (< a 269) (< b 269)) (and (> a 213) (> b 30) (< a 239) (< b 207)) ;;Limites de los bordes del laberinto. Los limites se definen con cuadrilateros. Para definir un limite se requiere   
+    (if {or (and (> a 244) (> b 24) (< a 269) (< b 269)) (and (> a 214) (> b 30) (< a 239) (< b 207)) ;;Limites de los bordes del laberinto. Los limites se definen con cuadrilateros. Para definir un limite se requiere   
             (and (> a 152) (> b 183) (< a 245) (< b 208))  (and (> a 152) (> b 152) (< a 177) (< b 186)) ;;la esquina superior izquierda y la esquina inferior derecha. Si las coordenadas de la esquina superior izquierda fueran (x1,y1)
             (and (> a 30) (> b 30) (< a 214) (< b 55)) (and (> a 176) (> b 152) (< a 208) (< b 177));; y las de la esquina inferior derecha (x2,y2), el limite se definiria como [and (> a x1) (> b y1) (< a x1) (< b y2)]
             (and (> a 30) (> b 54) (< a 55) (< b 177)) (and (> a 54) (> b 122) (< a 86) (< b 147))
@@ -58,8 +58,8 @@
             (and (> a 30) (> b 207) (< a 55) (< b 269)) (and (> a 54) (> b 244) (< a 177) (< b 269))
             (and (> a 91) (> b 213) (< a 117) (< b 245)) (and (> a 116) (> b 213) (< a 239) (< b 239))
             (and (> a 213) (> b 238) (< a 239) (< b 269)) (and (> a 183) (> b 244) (< a 214) (< b 269))
-            (and (> a 183) (> b 168) (< a 208) (< b 296)) (and (> a 183) (> b 122) (< a 208) (< b 153))
-            (and (> a 122) (> b 176) (< a 147) (< b 208)) (and (> a 91) (> b 183) (< a 123) (< b 208))}
+            (and (> a 183) (> b 122) (< a 208) (< b 153)) (and (> a 122) (> b 176) (< a 147) (< b 208))
+            (and (> a 91) (> b 183) (< a 123) (< b 208))}
         #t;;se puede mover el personaje
         #f
         )
