@@ -18,7 +18,18 @@
 ;;------------------------------------------
 ;;Movimiento del avatar y colisiones
 ;;------------------------------------------
-
+(define (intronivel1)
+  (define inivel1 (open-viewport "Intro NV1" 600 503))
+  ((draw-pixmap inivel1) "Nivel1.png" (make-posn 0 0) "blue")
+  (get-mouse-click inivel1)
+  (define x (posn-x (query-mouse-posn inivel1)))
+  (define y (posn-y (query-mouse-posn inivel1)))
+  (if (and (>= x 0) (<= x 600) (>= y 0) (<= y 503))
+      (begin
+        (close-viewport inivel1)
+        (nivel1)
+        )
+      ))
 (define (movimiento x1 y1 ventana key)
   ; (display "{")
 ;   (display (posn-x (query-mouse-posn ventana)))
@@ -124,6 +135,19 @@
   (movimiento 249 32 win1 (key-value (get-key-press win1)));;llamado a la función movimiento {movimiento x y ventana (lector de teclado)}
   )
 
+(define (intronivel2)
+  (define inivel2 (open-viewport "Intro NV2" 600 503))
+  ((draw-pixmap inivel2) "Nivel2.png" (make-posn 0 0) "blue")
+  (get-mouse-click inivel2)
+  (define x (posn-x (query-mouse-posn inivel2)))
+  (define y (posn-y (query-mouse-posn inivel2)))
+  (if (and (>= x 0) (<= x 600) (>= y 0) (<= y 503))
+      (begin
+        (close-viewport inivel2)
+        (nivel2)
+        )
+      ))
+
 (define (instrucciones)
   (define instruc (open-viewport "Instrucciones" 600 503))
   ((draw-pixmap instruc) "Instrucciones.png" (make-posn 0 0) "blue")
@@ -168,12 +192,12 @@
   (if (and (>= x 70) (<= x 270) (>= y 220) (<= y 290))
       (begin
         (close-viewport winmenu)
-        (nivel1)
+        (intronivel1)
         ))
   (if (and (>= x 330) (<= x 530) (>= y 220) (<= y 290))
       (begin
         (close-viewport winmenu)
-        ;(nivel2)
+        (intronivel2)
         ))
   (if (and (>= x 210) (<= x 410) (>= y 350) (<= y 390))
       (begin
