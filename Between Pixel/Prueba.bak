@@ -1,0 +1,5 @@
+(require (lib "graphics.ss" "graphics"))
+(open-graphics)                                ;Abrir la libreria
+(require (lib "draw.ss" "htdp"))
+(define wininicio (open-viewport "Between pixels" 600 503))
+((draw-solid-rectangle wininicio) (make-posn 490 20) 100 35 "red")

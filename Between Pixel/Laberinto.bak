@@ -1,0 +1,151 @@
+
+(require (lib "graphics.ss" "graphics"))       ;Importacion de la libreria                             ;Abrir la libreria
+(require 2htdp/universe)
+(require 2htdp/image)
+(open-graphics)  
+;;------------------------------------------
+(define (intro)
+  (define wininicio (open-viewport "Between pixels" 600 503))
+  ((draw-pixmap wininicio) "Logo.png" (make-posn 0 0) "blue")
+  (sleep 2)
+  ((draw-solid-rectangle wininicio)(make-posn 270 420) 10 10 "blue")
+  (sleep 0.8)
+  ((draw-solid-rectangle wininicio)(make-posn 290 420) 10 10 "blue")
+  (sleep 0.8)
+  ((draw-solid-rectangle wininicio)(make-posn 310 420) 10 10 "blue")
+  (sleep 0.8)
+        (close-viewport wininicio)
+        (menu)
+        )
+
+(define (nivel1)
+  (define win1 (open-viewport "Nivel1" 200 200))
+  ((draw-solid-rectangle win1)(make-posn 100 100) 10 10 "red") 
+  ((draw-string win1) (make-posn 130 180) "Puntaje:" "red")
+  
+
+
+(define (movimiento x1 y1 lad1 key)
+  (if (equal? key 'down)
+      (begin
+        (cuadro x1 y1 lad1)
+        (movimiento x1 (+ y1 5) lad1 (key-value (get-key-press win1))) )
+      (if (equal? key 'up)
+          (begin
+            (cuadro x1 y1 lad1)
+            (movimiento x1 (- y1 5) lad1 (key-value (get-key-press win1))) )
+          (if (equal? key 'right)
+              (begin
+                (cuadro x1 y1 lad1)
+                (movimiento (+ x1 5) y1 lad1 (key-value (get-key-press win1))) )
+              (if (equal? key 'left)
+                  (begin
+                    (cuadro x1 y1 lad1)
+                    (movimiento (- x1 5) y1 lad1 (key-value (get-key-press win1))) )
+                  (movimiento x1 y1 lad1 (key-value (get-key-press win1)))
+                  )))))
+    (define (cuadro x y lad)                       
+        (begin
+          ((draw-solid-rectangle win1)(make-posn x y) lad lad "blue")   
+          ((clear-solid-rectangle win1)(make-posn (- x lad) y) lad lad)
+          ((clear-solid-rectangle win1)(make-posn (+ x lad) y) lad lad) 
+          ((clear-solid-rectangle win1)(make-posn (- x lad) (- y lad)) (+ lad lad lad) lad)
+          ((clear-solid-rectangle win1)(make-posn x (+ y lad)) (+ lad lad lad) lad) 
+          (if (and (>= x 100) (<= x 110) (>= y 100) (<= 110))
+              (begin
+                (puntaje)
+                )
+              )))
+    
+  (define (puntaje)
+    ((draw-string win1) (make-posn 185 180) "10" "red"))
+    
+
+(movimiento 0 0 10 (key-value (get-key-press win1)))
+  )
+
+(define (instrucciones)
+  (define instruc (open-viewport "Instrucciones" 600 503))
+  ((draw-pixmap instruc) "Instrucciones.png" (make-posn 0 0) "blue")
+  (get-mouse-click instruc)
+  (define x (posn-x (query-mouse-posn instruc)))
+  (define y (posn-y (query-mouse-posn instruc)))
+  (if (and (>= x 490) (<= x 590) (>= y 460) (<= y 495))
+      (begin
+        (close-viewport instruc)
+        (menu)
+        )
+      (begin
+      (close-viewport instruc)
+      (instrucciones)
+      ))
+  )
+(define (creditos)
+  (define cred (open-viewport "Créditos" 600 503))
+  ((draw-pixmap cred) "Créditos.png" (make-posn 0 0) "blue")
+  (get-mouse-click cred)
+  (define x (posn-x (query-mouse-posn cred)))
+  (define y (posn-y (query-mouse-posn cred)))
+  (if (and (>= x 490) (<= x 590) (>= y 20) (<= y 55))
+      (begin
+        (close-viewport cred)
+        (menu)
+        ))
+  (if (and (>= x 0) (<= x 955) (>= y 0) (<= y 900))
+      (begin
+        (close-viewport cred)
+        (creditos)
+        ))
+  )
+
+  
+(define (menu)
+  (define winmenu (open-viewport "Menú principal" 600 503))
+  ((draw-pixmap winmenu) "Menú.png" (make-posn 0 0) "blue")
+  (get-mouse-click winmenu)
+  (define x (posn-x (query-mouse-posn winmenu)))
+  (define y (posn-y (query-mouse-posn winmenu)))
+  (if (and (>= x 70) (<= x 270) (>= y 220) (<= y 290))
+      (begin
+        (close-viewport winmenu)
+        (nivel1)
+        ))
+  (if (and (>= x 330) (<= x 530) (>= y 220) (<= y 290))
+      (begin
+        (close-viewport winmenu)
+        ;(nivel2)
+        ))
+  (if (and (>= x 210) (<= x 410) (>= y 350) (<= y 390))
+      (begin
+        (close-viewport winmenu)
+        (instrucciones)
+        ))
+  (if (and (>= x 245) (<= x 375) (>= y 420) (<= y 460))
+      (begin
+        (close-viewport winmenu)
+        (creditos)
+        ))
+  (if (and (>= x 0) (<= x 955) (>= y 0) (<= y 900))
+      (begin
+        (close-viewport winmenu)
+        (menu)
+        ))
+      )
+
+  (intro)
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
