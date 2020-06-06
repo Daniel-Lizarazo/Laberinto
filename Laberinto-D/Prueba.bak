@@ -1,0 +1,54 @@
+;; -----------------------------------------
+(require (lib "graphics.ss" "graphics"))       ;Importacion de la libreria
+(open-graphics)                                ;Abrir la libreria
+(define win1 (open-viewport "Cuadro" 800 600)) ;Dibujar la ventana principal
+;;------------------------------------------
+((draw-viewport win1) "red");
+
+
+;;------------------------------------------
+(define (movimiento x1 y1 lad1 key)
+  (define (comprobador a b)
+    (if (and (< b 500) (> b 20))
+        (begin
+              ((draw-solid-rectangle win1)(make-posn a b) lad1 lad1 "blue")
+              (movimiento a (+ b 10) lad1 (key-value (get-key-press win1)))
+            )
+        #f
+        )
+    )
+  (if (equal? key 'down)
+      (begin
+        
+        (comprobador x1 (+ y1 10))
+            
+        (movimiento x1 y1 lad1 (key-value (get-key-press win1)))
+        )
+      
+      (if (equal? key 'up)
+           
+          (begin
+           
+            (comprobador x1 (- y1 10))
+            (movimiento x1 (- y1 10) lad1 (key-value (get-key-press win1))) )
+          (if (equal? key 'right)
+              (begin
+                ((clear-solid-rectangle win1)(make-posn x1 y1) lad1 lad1)
+                ((draw-solid-rectangle win1)(make-posn (+ x1 10) y1) lad1 lad1 "blue")  
+                (movimiento (+ x1 10) y1 lad1 (key-value (get-key-press win1))) )
+              (if (equal? key 'left)
+                  (begin
+                    ((clear-solid-rectangle win1)(make-posn x1 y1) lad1 lad1)
+                    ((draw-solid-rectangle win1)(make-posn (- x1 10) y1) lad1 lad1 "blue")
+                    (movimiento (- x1 10) y1 lad1 (key-value (get-key-press win1))) )
+                  (movimiento x1 y1 lad1 (key-value (get-key-press win1)))
+                  ))))
+  )
+  
+      
+      
+  
+;;---------------------------------------------------
+(movimiento 20 40 20 (key-value (get-key-press win1)))  ;Llamo a la funcion de movimiento
+;;---------------------------------------------------
+            
