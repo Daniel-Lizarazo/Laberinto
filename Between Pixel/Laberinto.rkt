@@ -5,13 +5,13 @@
 (define (intro);;Animación de carga
   (define wininicio (open-viewport "Between pixels" 600 503))
   ((draw-pixmap wininicio) "Logo.png" (make-posn 0 0) "blue")
-  (sleep 0.13)
+  (sleep 0.5)
   ((draw-solid-rectangle wininicio)(make-posn 270 420) 10 10 "blue");;Cuadro azul
-  (sleep 0.23)
+  (sleep 0.8)
   ((draw-solid-rectangle wininicio)(make-posn 290 420) 10 10 "blue")
-  (sleep 0.23)
+  (sleep 0.8)
   ((draw-solid-rectangle wininicio)(make-posn 310 420) 10 10 "blue")
-  (sleep 0.23)
+  (sleep 1)
   (close-viewport wininicio)
   (menu)
   )
@@ -46,7 +46,7 @@
   (define (comprobador a b);; a = valor en x // b = valor en y
     (if {or (and (> a 244) (> b 24) (< a 269) (< b 269)) (and (> a 214) (> b 30) (< a 239) (< b 207)) ;;Limites de los bordes del laberinto. Los limites se definen con cuadrilateros. Para definir un limite se requiere   
             (and (> a 152) (> b 183) (< a 245) (< b 208))  (and (> a 152) (> b 152) (< a 177) (< b 186)) ;;la esquina superior izquierda y la esquina inferior derecha. Si las coordenadas de la esquina superior izquierda fueran (x1,y1)
-            (and (> a 30) (> b 30) (< a 214) (< b 55)) (and (> a 176) (> b 152) (< a 208) (< b 177));; y las de la esquina inferior derecha (x2,y2), el limite se definiria como [and (> a x1) (> b y1) (< a x1) (< b y2)]
+            (and (> a 30) (> b 30) (< a 215) (< b 55)) (and (> a 176) (> b 152) (< a 208) (< b 177));; y las de la esquina inferior derecha (x2,y2), el limite se definiria como [and (> a x1) (> b y1) (< a x1) (< b y2)]
             (and (> a 30) (> b 54) (< a 55) (< b 177)) (and (> a 54) (> b 122) (< a 86) (< b 147))
             (and (> a 122) (> b 153) (< a 153) (< b 178)) (and (> a 54) (> b 61) (< a 85) (< b 85))
             (and (> a 60) (> b 84) (< a 85) (< b 116)) (and (> a 84) (> b 91) (< a 147) (< b 116))
@@ -62,11 +62,6 @@
             (and (> a 91) (> b 183) (< a 123) (< b 208))}
         #t;;se puede mover el personaje
         #f
-        )
-    )
-  (define (puntaje)
-    (if (and (> x1 249) (> y1 249) (< x1 260) (< y1 260))
-        ((draw-string ventana) (make-posn 73 290) "10" "red")
         )
     )
   (if (equal? key 'down);;Abajo
@@ -107,7 +102,7 @@
                   (begin
                     (if (and (comprobador (- x1 1) y1) (comprobador (- x1 1) (+ y1 5)) (comprobador (- x1 1) (+ y1 11)) (comprobador (- x1 1) (+ y1 10)) (comprobador (- x1 1) (+ y1 17)))
                         (begin
-                          (puntaje)
+                          ;(puntaje)
                           ((clear-solid-rectangle ventana)(make-posn x1 y1) 9 18)
                           ((draw-pixmap ventana) "Estudiante.png" (make-posn (- x1 1) y1) "blue")
                           (movimiento (- x1 1) y1 ventana (key-value (get-key-press ventana)))
@@ -116,7 +111,7 @@
                         )
                     )
                   (begin
-                    (puntaje)
+                    ;(puntaje)
                     (movimiento x1 y1 ventana (key-value (get-key-press ventana)))
                     )  
                   )
@@ -128,8 +123,7 @@
 (define (nivel1);; primer nivel
   (define win1 (open-viewport "Nivel1" 300 350));;creación de la ventana
   ((draw-pixmap win1) "Laberinto.png" (make-posn 0 0) "blue");;dibujo del laberinto
-  ((draw-string win1) (make-posn 24 290) "Puntaje:" "red")
-  ((draw-pixmap win1) "Parcial.png" (make-posn 185 280) "blue");;dibujo del item Parcial
+  ((draw-pixmap win1) "Puerta.png" (make-posn 190 277) "blue");;dibujo del item Puerta
   ((draw-pixmap win1) "Taller.png" (make-posn 70 133) "blue");;dibujo del item Taller
   ((draw-pixmap win1) "Estudiante.png" (make-posn 249 32) "blue");;dibujo del Avatar
   (movimiento 249 32 win1 (key-value (get-key-press win1)));;llamado a la función movimiento {movimiento x y ventana (lector de teclado)}
