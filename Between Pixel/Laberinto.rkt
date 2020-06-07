@@ -5,7 +5,7 @@
 (define (intro);;Animación de carga
   (define wininicio (open-viewport "Between pixels" 600 503))
   ((draw-pixmap wininicio) "Logo.png" (make-posn 0 0) "blue")
-  (sleep 0.1)
+  (sleep 0.1);;yo modifiqué el tiempo para que me fuera más rapido probar lo que hice, pero se me olvidaron los valores que habían antes
   ((draw-solid-rectangle wininicio)(make-posn 270 420) 10 10 "blue");;Cuadro azul
   (sleep 0.1)
   ((draw-solid-rectangle wininicio)(make-posn 290 420) 10 10 "blue")
