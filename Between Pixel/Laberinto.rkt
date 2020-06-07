@@ -104,14 +104,27 @@
       #f
       )
   )
-
+(define (Salida1)
+ (define salida (open-viewport "Salida - Nivel 1" 600 503))
+          ((draw-pixmap salida) "Salida1.png" (make-posn 0 0) "blue")
+          (get-mouse-click salida)
+          (define x (posn-x (query-mouse-posn salida)))
+          (define y (posn-y (query-mouse-posn salida)))
+          (if (and (>= x 0) (<= x 600) (>= y 0) (<= y 503))
+              (begin
+                (close-viewport salida)
+                (menu)
+                )
+              ))
 
 (define (movimiento x1 y1 ventana key puntos item1 item2 item3 item4);; puntos = puntos sumados en el nivel items = items recogidos
   (define (salida x y)
     (if (and (> x 182) (> y 268) (< x 208) (< y 272))
-        (display "Hola")
-        )
-    )
+        (begin
+          (close-viewport ventana)
+         (Salida1)
+          )
+        ))
   (define (objetos a b ventana)
     (if (and (> a 70) (> b 133) (< a 85) (< b 148))
         (begin
@@ -257,6 +270,7 @@
         (nivel2)
         )
       ))
+
 
 (define (instrucciones)
   (define instruc (open-viewport "Instrucciones" 600 503))
