@@ -123,7 +123,7 @@
       )
   )
 
-(define (movimiento x1 y1 ventana ventana2 key puntos item1 item2 item3 item4);; puntos = puntos sumados en el nivel items = items recogidos
+(define (movimiento x1 y1 ventana  key puntos item1 item2 item3 item4 item5);; puntos = puntos sumados en el nivel items = items recogidos
   
   
   (define (salida x y)
@@ -134,7 +134,7 @@
           )
         )
     )
-  (define (objetos a b ventana vetana2)
+  (define (objetos a b ventana)
     (if (and (> a 70) (> b 133) (< a 85) (< b 148))
         (begin
           ((clear-solid-rectangle ventana)(make-posn 70 133) 15 14)
@@ -142,7 +142,7 @@
               (begin
                 (play-sound "item2.mp3" #t)
                 (puntaje (+ 35 puntos) 100 203 294 0 ventana)
-                (movimiento x1 y1 ventana ventana2 (key-value (get-key-press ventana)) (+ puntos 35) (+ item1 1) item2 item3 item4)
+                (movimiento x1 y1 ventana  (key-value (get-key-press ventana)) (+ puntos 35) (+ item1 1) item2 item3 item4 item5)
                 )
               )
           )
@@ -153,7 +153,7 @@
                   (begin
                     (play-sound "item2.mp3" #t)
                     (puntaje (+ 35 puntos) 100 203 294 0 ventana)
-                    (movimiento x1 y1 ventana ventana2 (key-value (get-key-press ventana)) (+ puntos 35) item1 (+ item2 1) item3 item4)
+                    (movimiento x1 y1 ventana  (key-value (get-key-press ventana)) (+ puntos 35) item1 (+ item2 1) item3 item4 item5)
                     )
                   )
               )
@@ -168,16 +168,16 @@
       (begin
         (if (and (comprobador x1 (+ y1 18)) (comprobador (+ x1 5) (+ y1 18)) (comprobador (+ x1 8) (+ y1 18)));;Comprueba que el movimiento a realizar quede dentro del espacio definido
             (begin
-              (objetos x1 (+ y1 18) ventana ventana2)
-              (objetos (+ x1 5) (+ y1 18) ventana ventana2)
-              (objetos (+ x1 8) (+ y1 18) ventana ventana2)
+              (objetos x1 (+ y1 18) ventana )
+              (objetos (+ x1 5) (+ y1 18) ventana )
+              (objetos (+ x1 8) (+ y1 18) ventana )
               ((clear-solid-rectangle ventana)(make-posn x1 y1) 9 18);;En caso de ser verdadero elimina el espacio que ocupa
               ((draw-pixmap ventana) "Estudiante.png" (make-posn x1 (+ y1 1)) "blue");; y se re-dibuja en la dirección ingresada por teclado
-              (movimiento x1 (+ y1 1) ventana  ventana2 (key-value (get-key-press ventana)) puntos item1 item2 item3 item4);; espera el siguiente movimiento
+              (movimiento x1 (+ y1 1) ventana   (key-value (get-key-press ventana)) puntos item1 item2 item3 item4 item5);; espera el siguiente movimiento
               )
             (begin
               (salida (+ x1 8) (+ y1 18))
-              (movimiento x1 y1 ventana ventana2 (key-value (get-key-press ventana)) puntos item1 item2 item3 item4);; en caso de que el movimiento no quede dentro del espacio definido se espera un nuevo movimiento
+              (movimiento x1 y1 ventana  (key-value (get-key-press ventana)) puntos item1 item2 item3 item4 item5);; en caso de que el movimiento no quede dentro del espacio definido se espera un nuevo movimiento
               )
             )
         )
@@ -185,16 +185,16 @@
           (begin
             (if (and (comprobador x1 (- y1 1)) (comprobador (+ x1 5) (- y1 1)) (comprobador (+ x1 8) (- y1 1)))
                 (begin
-                  (objetos x1 (- y1 1) ventana ventana2)
-                  (objetos (+ x1 5) (- y1 1) ventana ventana2)
-                  (objetos (+ x1 8) (- y1 1) ventana ventana2)
+                  (objetos x1 (- y1 1) ventana )
+                  (objetos (+ x1 5) (- y1 1) ventana )
+                  (objetos (+ x1 8) (- y1 1) ventana )
                   ((clear-solid-rectangle ventana)(make-posn x1 y1) 9 18)
                   ((draw-pixmap ventana) "Estudiante.png" (make-posn x1 (- y1 1)) "blue")
-                  (movimiento x1 (- y1 1) ventana ventana2 (key-value (get-key-press ventana)) puntos item1 item2 item3 item4)
+                  (movimiento x1 (- y1 1) ventana  (key-value (get-key-press ventana)) puntos item1 item2 item3 item4 item5)
                   )
                 (begin
                   (salida x1 (- y1 1))
-                  (movimiento x1 y1 ventana ventana2 (key-value (get-key-press ventana)) puntos item1 item2 item3 item4);; en caso de que el movimiento no quede dentro del espacio definido se espera un nuevo movimiento
+                  (movimiento x1 y1 ventana  (key-value (get-key-press ventana)) puntos item1 item2 item3 item4 item5);; en caso de que el movimiento no quede dentro del espacio definido se espera un nuevo movimiento
                   )
                 )
             )
@@ -202,18 +202,18 @@
               (begin
                 (if (and (comprobador (+ x1 9) y1) (comprobador (+ x1 9) (+ y1 5)) (comprobador (+ x1 9) (+ y1 10)) (comprobador (+ x1 9) (+ y1 11)) (comprobador (+ x1 9) (+ y1 17)))
                     (begin
-                      (objetos (+ x1 9) y1 ventana ventana2)
-                      (objetos (+ x1 9) (+ y1 5) ventana ventana2)
-                      (objetos (+ x1 9) (+ y1 10) ventana ventana2)
-                      (objetos (+ x1 9) (+ y1 11) ventana ventana2)
-                      (objetos (+ x1 9) (+ y1 17) ventana ventana2)
+                      (objetos (+ x1 9) y1 ventana )
+                      (objetos (+ x1 9) (+ y1 5) ventana )
+                      (objetos (+ x1 9) (+ y1 10) ventana )
+                      (objetos (+ x1 9) (+ y1 11) ventana )
+                      (objetos (+ x1 9) (+ y1 17) ventana )
                       ((clear-solid-rectangle ventana)(make-posn x1 y1) 9 18)
                       ((draw-pixmap ventana) "Estudiante.png" (make-posn (+ x1 1) y1) "blue")
-                      (movimiento (+ x1 1) y1 ventana ventana2 (key-value (get-key-press ventana)) puntos item1 item2 item3 item4)
+                      (movimiento (+ x1 1) y1 ventana  (key-value (get-key-press ventana)) puntos item1 item2 item3 item4 item5)
                       )
                     (begin
                       (salida (+ x1 9) (+ y1 17))
-                      (movimiento x1 y1 ventana ventana2 (key-value (get-key-press ventana)) puntos item1 item2 item3 item4);; en caso de que el movimiento no quede dentro del espacio definido se espera un nuevo movimiento
+                      (movimiento x1 y1 ventana  (key-value (get-key-press ventana)) puntos item1 item2 item3 item4 item5);; en caso de que el movimiento no quede dentro del espacio definido se espera un nuevo movimiento
                       )
                     )
                 )
@@ -221,23 +221,23 @@
                   (begin
                     (if (and (comprobador (- x1 1) y1) (comprobador (- x1 1) (+ y1 5)) (comprobador (- x1 1) (+ y1 11)) (comprobador (- x1 1) (+ y1 10)) (comprobador (- x1 1) (+ y1 17)))
                         (begin
-                          (objetos (- x1 1) y1 ventana ventana2)
-                          (objetos (- x1 1) (+ y1 5) ventana ventana2)
-                          (objetos (- x1 1) (+ y1 11) ventana ventana2)
-                          (objetos (- x1 1) (+ y1 10) ventana ventana2)
-                          (objetos (- x1 1) (+ y1 17) ventana ventana2)
+                          (objetos (- x1 1) y1 ventana )
+                          (objetos (- x1 1) (+ y1 5) ventana )
+                          (objetos (- x1 1) (+ y1 11) ventana )
+                          (objetos (- x1 1) (+ y1 10) ventana )
+                          (objetos (- x1 1) (+ y1 17) ventana )
                           ((clear-solid-rectangle ventana)(make-posn x1 y1) 9 18)
                           ((draw-pixmap ventana) "Estudiante.png" (make-posn (- x1 1) y1) "blue")
-                          (movimiento (- x1 1) y1 ventana ventana2 (key-value (get-key-press ventana)) puntos item1 item2 item3 item4)
+                          (movimiento (- x1 1) y1 ventana  (key-value (get-key-press ventana)) puntos item1 item2 item3 item4 item5)
                           )
                         (begin
                           (salida (- x1 1) y1)
-                          (movimiento x1 y1 ventana ventana2 (key-value (get-key-press ventana)) puntos item1 item2 item3 item4);; en caso de que el movimiento no quede dentro del espacio definido se espera un nuevo movimiento
+                          (movimiento x1 y1 ventana  (key-value (get-key-press ventana)) puntos item1 item2 item3 item4 item5);; en caso de que el movimiento no quede dentro del espacio definido se espera un nuevo movimiento
                           )
                         )
                     )
                   (begin
-                    (movimiento x1 y1 ventana ventana2 (key-value (get-key-press ventana)) puntos item1 item2 item3 item4)
+                    (movimiento x1 y1 ventana  (key-value (get-key-press ventana)) puntos item1 item2 item3 item4 item5)
                     )  
                   )
               )
@@ -267,12 +267,12 @@
   ((draw-pixmap win1) "0.png" (make-posn 203 294) "blue")
   ((draw-pixmap win1) "0.png" (make-posn 221 294) "blue")
   ((draw-pixmap win1) "0.png" (make-posn 239 294) "blue")
-  (movimiento  188 247 win1 0(key-value (get-key-press win1)) 0 0 0 0 0);;llamado a la función movimiento {movimiento x y ventana (lector de teclado)}
+  (movimiento  249 32 win1 (key-value (get-key-press win1)) 0 0 0 0 0 0);;llamado a la función movimiento {movimiento x y ventana (lector de teclado)}
   )
 (define (Salida2 puntos1)
   (define salida2 (open-viewport "Salida - Nivel 2" 600 503))
   ((draw-pixmap salida2) "Salida2.png" (make-posn 0 0) "blue")
-  (puntaje puntos1 100 375 306 0 salida2)
+  (puntaje puntos1 100  432 307 0 salida2)
   (play-sound "Final.mp3" #t)
   (get-mouse-click salida2)
   (define x (posn-x (query-mouse-posn salida2)))
@@ -284,8 +284,8 @@
         )
       )
   )
-(define (movimientonivel2 x y n m x1 y1 ventana ventana2 key puntos item1 item2 item3 item4)
-(define (movimiento x1 y1 ventana ventana2 key puntos item1 item2 item3 item4);; puntos = puntos sumados en el nivel items = items recogidos
+(define (movimientonivel2 x y n m x1 y1 ventana  key puntos item1 item2 item3 item4 item5)
+(define (movimiento x1 y1 ventana  key puntos item1 item2 item3 item4 item5);; puntos = puntos sumados en el nivel items = items recogidos
   
   
   (define (salida x y)
@@ -296,15 +296,15 @@
           )
         )
     )
-  (define (objetos a b ventana vetana2)
+  (define (objetos a b ventana)
     (if (and (> a 160) (> b 253) (< a 175) (< b 268))
         (begin
           ((clear-solid-rectangle ventana)(make-posn 160 253) 15 14)
           (if (= item1 0)
               (begin
                 (play-sound "item2.mp3" #t)
-                (puntaje (+ 35 puntos) 100 203 294 0 ventana)
-                (movimiento x1 y1 ventana ventana2 (key-value (get-key-press ventana)) (+ puntos 35) (+ item1 1) item2 item3 item4)
+                (puntaje (+ 45 puntos) 100 203 294 0 ventana)
+                (movimiento x1 y1 ventana  (key-value (get-key-press ventana)) (+ puntos 35) (+ item1 1) item2 item3 item4 item5)
                 )
               )
           )
@@ -314,41 +314,41 @@
               (if (= item2 0)
                   (begin
                     (play-sound "item2.mp3" #t)
-                    (puntaje (+ 35 puntos) 100 203 294 0 ventana)
-                    (movimiento x1 y1 ventana ventana2 (key-value (get-key-press ventana)) (+ puntos 35) item1 (+ item2 1) item3 item4)
+                    (puntaje (+ 45 puntos) 100 203 294 0 ventana)
+                    (movimiento x1 y1 ventana  (key-value (get-key-press ventana)) (+ puntos 35) item1 (+ item2 1) item3 item4 item5)
                     )
                   )
               )
-            (if (and (> a 130) (> b 99) (< a 145) (< b 114))
+            (if (and (> a 70) (> b 132) (< a 85) (< b 147))
                 (begin
-                  ((clear-solid-rectangle ventana)(make-posn 130 99) 15 14)
-                  (if (= item2 0)
+                  ((clear-solid-rectangle ventana)(make-posn 70 132) 15 14)
+                  (if (= item3 0)
                       (begin
                         (play-sound "item2.mp3" #t)
-                        (puntaje (+ 35 puntos) 100 203 294 0 ventana)
-                        (movimiento x1 y1 ventana ventana2 (key-value (get-key-press ventana)) (+ puntos 35) item1 (+ item2 1) item3 item4)
+                        (puntaje (+ 45 puntos) 100 203 294 0 ventana)
+                        (movimiento x1 y1 ventana  (key-value (get-key-press ventana)) (+ puntos 35) item1 item3 (+ item3 1) item4 item5)
                         )
                       )
                   )
                 (if (and (> a 69) (> b 223) (< a 84) (< b 238))
                     (begin
                       ((clear-solid-rectangle ventana)(make-posn 69 223) 15 14)
-                      (if (= item2 0)
+                      (if (= item4 0)
                           (begin
                             (play-sound "item2.mp3" #t)
-                            (puntaje (+ 35 puntos) 100 203 294 0 ventana)
-                            (movimiento x1 y1 ventana ventana2 (key-value (get-key-press ventana)) (+ puntos 35) item1 (+ item2 1) item3 item4)
+                            (puntaje (+ 45 puntos) 100 203 294 0 ventana)
+                            (movimiento x1 y1 ventana  (key-value (get-key-press ventana)) (+ puntos 35) item1 item2 item3 (+ item4 1) item5)
                             )
                           )
                       )
-                    (if (and (> a 189) (> b 248) (< a 204) (< b 265))
+                    (if (and (> a 186) (> b 251) (< a 201) (< b 269))
                         (begin
-                          ((clear-solid-rectangle ventana)(make-posn 189 248) 15 14)
-                          (if (= item2 0)
+                          ((clear-solid-rectangle ventana)(make-posn 186 251) 15 17)
+                          (if (= item5 0)
                               (begin
                                 (play-sound "item2.mp3" #t)
                                 (puntaje (+ 250 puntos) 100 203 294 0 ventana)
-                                (movimiento x1 y1 ventana ventana2 (key-value (get-key-press ventana)) (+ puntos 35) item1 (+ item2 1) item3 item4)
+                                (movimiento x1 y1 ventana  (key-value (get-key-press ventana)) (+ puntos 250) item1 item2 item3 item4 (+ item5 1))
                                 )
                               )
                           )
@@ -363,16 +363,16 @@
       (begin
         (if (and (comprobador x1 (+ y1 18)) (comprobador (+ x1 5) (+ y1 18)) (comprobador (+ x1 8) (+ y1 18)));;Comprueba que el movimiento a realizar quede dentro del espacio definido
             (begin
-              (objetos x1 (+ y1 18) ventana ventana2)
-              (objetos (+ x1 5) (+ y1 18) ventana ventana2)
-              (objetos (+ x1 8) (+ y1 18) ventana ventana2)
+              (objetos x1 (+ y1 18) ventana )
+              (objetos (+ x1 5) (+ y1 18) ventana )
+              (objetos (+ x1 8) (+ y1 18) ventana )
               ((clear-solid-rectangle ventana)(make-posn x1 y1) 9 18);;En caso de ser verdadero elimina el espacio que ocupa
               ((draw-pixmap ventana) "Estudiante.png" (make-posn x1 (+ y1 1)) "blue");; y se re-dibuja en la dirección ingresada por teclado
-              (movimiento x1 (+ y1 1) ventana  ventana2 (key-value (get-key-press ventana)) puntos item1 item2 item3 item4);; espera el siguiente movimiento
+              (movimiento x1 (+ y1 1) ventana   (key-value (get-key-press ventana)) puntos item1 item2 item3 item4 item5);; espera el siguiente movimiento
               )
             (begin
               (salida (+ x1 8) (+ y1 18))
-              (movimiento x1 y1 ventana ventana2 (key-value (get-key-press ventana)) puntos item1 item2 item3 item4);; en caso de que el movimiento no quede dentro del espacio definido se espera un nuevo movimiento
+              (movimiento x1 y1 ventana  (key-value (get-key-press ventana)) puntos item1 item2 item3 item4 item5);; en caso de que el movimiento no quede dentro del espacio definido se espera un nuevo movimiento
               )
             )
         )
@@ -380,16 +380,16 @@
           (begin
             (if (and (comprobador x1 (- y1 1)) (comprobador (+ x1 5) (- y1 1)) (comprobador (+ x1 8) (- y1 1)))
                 (begin
-                  (objetos x1 (- y1 1) ventana ventana2)
-                  (objetos (+ x1 5) (- y1 1) ventana ventana2)
-                  (objetos (+ x1 8) (- y1 1) ventana ventana2)
+                  (objetos x1 (- y1 1) ventana )
+                  (objetos (+ x1 5) (- y1 1) ventana )
+                  (objetos (+ x1 8) (- y1 1) ventana )
                   ((clear-solid-rectangle ventana)(make-posn x1 y1) 9 18)
                   ((draw-pixmap ventana) "Estudiante.png" (make-posn x1 (- y1 1)) "blue")
-                  (movimiento x1 (- y1 1) ventana ventana2 (key-value (get-key-press ventana)) puntos item1 item2 item3 item4)
+                  (movimiento x1 (- y1 1) ventana  (key-value (get-key-press ventana)) puntos item1 item2 item3 item4 item5)
                   )
                 (begin
                   (salida x1 (- y1 1))
-                  (movimiento x1 y1 ventana ventana2 (key-value (get-key-press ventana)) puntos item1 item2 item3 item4);; en caso de que el movimiento no quede dentro del espacio definido se espera un nuevo movimiento
+                  (movimiento x1 y1 ventana  (key-value (get-key-press ventana)) puntos item1 item2 item3 item4 item5);; en caso de que el movimiento no quede dentro del espacio definido se espera un nuevo movimiento
                   )
                 )
             )
@@ -397,18 +397,18 @@
               (begin
                 (if (and (comprobador (+ x1 9) y1) (comprobador (+ x1 9) (+ y1 5)) (comprobador (+ x1 9) (+ y1 10)) (comprobador (+ x1 9) (+ y1 11)) (comprobador (+ x1 9) (+ y1 17)))
                     (begin
-                      (objetos (+ x1 9) y1 ventana ventana2)
-                      (objetos (+ x1 9) (+ y1 5) ventana ventana2)
-                      (objetos (+ x1 9) (+ y1 10) ventana ventana2)
-                      (objetos (+ x1 9) (+ y1 11) ventana ventana2)
-                      (objetos (+ x1 9) (+ y1 17) ventana ventana2)
+                      (objetos (+ x1 9) y1 ventana )
+                      (objetos (+ x1 9) (+ y1 5) ventana )
+                      (objetos (+ x1 9) (+ y1 10) ventana )
+                      (objetos (+ x1 9) (+ y1 11) ventana )
+                      (objetos (+ x1 9) (+ y1 17) ventana )
                       ((clear-solid-rectangle ventana)(make-posn x1 y1) 9 18)
                       ((draw-pixmap ventana) "Estudiante.png" (make-posn (+ x1 1) y1) "blue")
-                      (movimiento (+ x1 1) y1 ventana ventana2 (key-value (get-key-press ventana)) puntos item1 item2 item3 item4)
+                      (movimiento (+ x1 1) y1 ventana  (key-value (get-key-press ventana)) puntos item1 item2 item3 item4 item5)
                       )
                     (begin
                       (salida (+ x1 9) (+ y1 17))
-                      (movimiento x1 y1 ventana ventana2 (key-value (get-key-press ventana)) puntos item1 item2 item3 item4);; en caso de que el movimiento no quede dentro del espacio definido se espera un nuevo movimiento
+                      (movimiento x1 y1 ventana  (key-value (get-key-press ventana)) puntos item1 item2 item3 item4 item5);; en caso de que el movimiento no quede dentro del espacio definido se espera un nuevo movimiento
                       )
                     )
                 )
@@ -416,23 +416,23 @@
                   (begin
                     (if (and (comprobador (- x1 1) y1) (comprobador (- x1 1) (+ y1 5)) (comprobador (- x1 1) (+ y1 11)) (comprobador (- x1 1) (+ y1 10)) (comprobador (- x1 1) (+ y1 17)))
                         (begin
-                          (objetos (- x1 1) y1 ventana ventana2)
-                          (objetos (- x1 1) (+ y1 5) ventana ventana2)
-                          (objetos (- x1 1) (+ y1 11) ventana ventana2)
-                          (objetos (- x1 1) (+ y1 10) ventana ventana2)
-                          (objetos (- x1 1) (+ y1 17) ventana ventana2)
+                          (objetos (- x1 1) y1 ventana )
+                          (objetos (- x1 1) (+ y1 5) ventana )
+                          (objetos (- x1 1) (+ y1 11) ventana )
+                          (objetos (- x1 1) (+ y1 10) ventana )
+                          (objetos (- x1 1) (+ y1 17) ventana )
                           ((clear-solid-rectangle ventana)(make-posn x1 y1) 9 18)
                           ((draw-pixmap ventana) "Estudiante.png" (make-posn (- x1 1) y1) "blue")
-                          (movimiento (- x1 1) y1 ventana ventana2 (key-value (get-key-press ventana)) puntos item1 item2 item3 item4)
+                          (movimiento (- x1 1) y1 ventana  (key-value (get-key-press ventana)) puntos item1 item2 item3 item4 item5)
                           )
                         (begin
                           (salida (- x1 1) y1)
-                          (movimiento x1 y1 ventana ventana2 (key-value (get-key-press ventana)) puntos item1 item2 item3 item4);; en caso de que el movimiento no quede dentro del espacio definido se espera un nuevo movimiento
+                          (movimiento x1 y1 ventana  (key-value (get-key-press ventana)) puntos item1 item2 item3 item4 item5);; en caso de que el movimiento no quede dentro del espacio definido se espera un nuevo movimiento
                           )
                         )
                     )
                   (begin
-                    (movimiento x1 y1 ventana ventana2 (key-value (get-key-press ventana)) puntos item1 item2 item3 item4)
+                    (movimiento x1 y1 ventana  (key-value (get-key-press ventana)) puntos item1 item2 item3 item4 item5)
                     )  
                   )
               )
@@ -454,7 +454,7 @@
                 )
             ))
           (if (= m 50)
-              (movimientonivel2 x y 0 m x1 y1 ventana ventana2 key puntos item1 item2 item3 item4))  
+              (movimientonivel2 x y 0 m x1 y1 ventana  key puntos item1 item2 item3 item4 item5))  
           )
   (if (< n 50);;Abajo
       (begin
@@ -462,10 +462,10 @@
             (begin
               ((clear-solid-rectangle ventana)(make-posn x y) 12 17);;En caso de ser verdadero elimina el espacio que ocupa
               ((draw-pixmap ventana) "Profesor.png" (make-posn x (+ y 2)) "blue");; y se re-dibuja en la dirección ingresada por teclado
-              (sleep 0.1)(movimiento x1 y1 ventana ventana2 key puntos item1 item2 item3 item4)(movimientonivel2 x (+ y 2) (+ n 1) m x1 y1 ventana ventana2 key puntos item1 item2 item3 item4);; espera el siguiente movimiento
+              (sleep 0.1)(movimiento x1 y1 ventana  key puntos item1 item2 item3 item4 item5)(movimientonivel2 x (+ y 2) (+ n 1) m x1 y1 ventana  key puntos item1 item2 item3 item4 item5);; espera el siguiente movimiento
               )
             (begin
-              (sleep 0.1)(movimientonivel2 x y (+ n 1) m x1 y1 ventana ventana2 key puntos item1 item2 item3 item4);; en caso de que el movimiento no quede dentro del espacio definido se espera un nuevo movimiento
+              (sleep 0.1)(movimientonivel2 x y (+ n 1) m x1 y1 ventana  key puntos item1 item2 item3 item4 item5);; en caso de que el movimiento no quede dentro del espacio definido se espera un nuevo movimiento
               )
             )
         ))
@@ -491,15 +491,15 @@
   ((draw-pixmap win1) "Laberinto.png" (make-posn 0 0) "blue");;dibujo del laberinto
   ((draw-pixmap win1) "Parcial.png" (make-posn 160 253) "blue");;dibujo del item Parcial
   ((draw-pixmap win1) "Parcial.png" (make-posn 131 192) "blue")
-  ((draw-pixmap win1) "Parcial.png" (make-posn 130 99) "blue")
+  ((draw-pixmap win1) "Parcial.png" (make-posn 70 132) "blue")
   ((draw-pixmap win1) "Parcial.png" (make-posn 69 223) "blue")
   ((draw-pixmap win1) "Profesor.png" (make-posn 36 127) "blue");;dibujo del Diploma
-  ((draw-pixmap win1) "Diploma.png" (make-posn 186 248) "blue")
+  ((draw-pixmap win1) "Diploma.png" (make-posn 186 251) "blue")
   ((draw-pixmap win1) "Estudiante.png" (make-posn 249 32) "blue");;dibujo del Avatar
   ((draw-pixmap win1) "0.png" (make-posn 203 294) "blue")
   ((draw-pixmap win1) "0.png" (make-posn 221 294) "blue")
   ((draw-pixmap win1) "0.png" (make-posn 239 294) "blue")
-  (movimientonivel2 36 127 0 50 249 32 win1 0 (key-value (get-key-press win1)) 0 0 0 0 0)
+  (movimientonivel2 36 127 0 50 249 32 win1 (key-value (get-key-press win1)) 0 0 0 0 0 0)
 )
 
 
