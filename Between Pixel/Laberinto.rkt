@@ -155,8 +155,6 @@
               (movimiento x1 (+ y1 1) ventana (key-value (get-key-press ventana)) puntos item1 item2 item3 item4);; espera el siguiente movimiento
               )
             (begin
-              (salida  x1 (+ y1 18))
-              (salida (+ x1 5) (+ y1 18))
               (salida (+ x1 8) (+ y1 18))
               (movimiento x1 y1 ventana (key-value (get-key-press ventana)) puntos item1 item2 item3 item4);; en caso de que el movimiento no quede dentro del espacio definido se espera un nuevo movimiento
               )
@@ -175,8 +173,6 @@
                   )
                 (begin
                   (salida x1 (- y1 1))
-                  (salida (+ x1 5) (- y1 1))
-                  (salida (+ x1 8) (- y1 1))
                   (movimiento x1 y1 ventana (key-value (get-key-press ventana)) puntos item1 item2 item3 item4);; en caso de que el movimiento no quede dentro del espacio definido se espera un nuevo movimiento
                   )
                 )
@@ -195,14 +191,10 @@
                       (movimiento (+ x1 1) y1 ventana (key-value (get-key-press ventana)) puntos item1 item2 item3 item4)
                       )
                     (begin
-                      (salida (+ x1 9) y1)
-                      (salida (+ x1 9) (+ y1 5))
-                      (salida (+ x1 9) (+ y1 10))
-                      (salida (+ x1 9) (+ y1 11))
                       (salida (+ x1 9) (+ y1 17))
-                    (movimiento x1 y1 ventana (key-value (get-key-press ventana)) puntos item1 item2 item3 item4);; en caso de que el movimiento no quede dentro del espacio definido se espera un nuevo movimiento
+                      (movimiento x1 y1 ventana (key-value (get-key-press ventana)) puntos item1 item2 item3 item4);; en caso de que el movimiento no quede dentro del espacio definido se espera un nuevo movimiento
+                      )
                     )
-                )
                 )
               (if (equal? key 'left);;Izquierda
                   (begin
@@ -219,22 +211,18 @@
                           )
                         (begin
                           (salida (- x1 1) y1)
-                          (salida (- x1 1) (+ y1 5))
-                          (salida (- x1 1) (+ y1 11))
-                          (salida (- x1 1) (+ y1 10))
-                          (salida (- x1 1) (+ y1 17))
                           (movimiento x1 y1 ventana (key-value (get-key-press ventana)) puntos item1 item2 item3 item4);; en caso de que el movimiento no quede dentro del espacio definido se espera un nuevo movimiento
                           )
                         )
                     )
-                    (begin
-                      (movimiento x1 y1 ventana (key-value (get-key-press ventana)) puntos item1 item2 item3 item4)
-                      )  
-                    )
+                  (begin
+                    (movimiento x1 y1 ventana (key-value (get-key-press ventana)) puntos item1 item2 item3 item4)
+                    )  
                   )
               )
           )
       )
+  )
 (define (intronivel1)
   (define inivel1 (open-viewport "Intro NV1" 600 503))
   ((draw-pixmap inivel1) "Nivel1.png" (make-posn 0 0) "blue")
