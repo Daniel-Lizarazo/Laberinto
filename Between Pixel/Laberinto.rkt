@@ -79,10 +79,6 @@
             )
       )
   )
-;;------------------------------------------
-;;Mensaje de salida del laberinto
-;;------------------------------------------
-(define (salida1) (open-viewport "Salida Nivel 1" 600 503))
 
 ;;------------------------------------------
 ;;Movimiento del avatar y colisiones
