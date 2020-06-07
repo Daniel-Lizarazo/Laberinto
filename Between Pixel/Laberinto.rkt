@@ -113,6 +113,7 @@
           ((clear-solid-rectangle ventana)(make-posn 70 133) 15 14)
           (if (= item1 0)
               (begin
+                (play-sound "item.mp3" #t)
                 (puntaje (+ 35 puntos) 100 203 ventana)
                 (movimiento x1 y1 ventana (key-value (get-key-press ventana)) (+ puntos 35) (+ item1 1) item2 item3 item4)
                 )
@@ -123,6 +124,7 @@
               ((clear-solid-rectangle ventana)(make-posn 187 125) 15 14)
               (if (= item2 0)
                   (begin
+                    (play-sound "item.mp3" #t)
                     (puntaje (+ 35 puntos) 100 203 ventana)
                     (movimiento x1 y1 ventana (key-value (get-key-press ventana)) (+ puntos 35) item1 (+ item2 1) item3 item4)
                     )
