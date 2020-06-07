@@ -403,17 +403,17 @@
           )
       )
   )
-  (define (movimientopp x y ventana n m)
+  (define (movimientopp x y ventana2 n m)
       (if (< m 50);;Arriba
           (begin
             (if (and (comprobador x (- y 1)) (comprobador (+ x 5) (- y 1)) (comprobador (+ x 8) (- y 1)))
                 (begin
-                  ((clear-solid-rectangle ventana)(make-posn x y) 9 18)
-                  ((draw-pixmap ventana) "Profesor.png" (make-posn x (- y 2)) "blue")
-                  (sleep 0.1)(movimientopp x (- y 2) ventana n (+ m 1))
+                  ((clear-solid-rectangle ventana2)(make-posn x y) 12 17)
+                  ((draw-pixmap ventana2) "Profesor.png" (make-posn x (- y 2)) "blue")
+                  (sleep 0.1)(movimientopp x (- y 2) ventana2 n (+ m 1))
                   )
                 (begin
-                  (sleep 0.1)(movimientopp x y ventana n (+ m 1));; en caso de que el movimiento no quede dentro del espacio definido se espera un nuevo movimiento
+                  (sleep 0.1)(movimientopp x y ventana2 n (+ m 1));; en caso de que el movimiento no quede dentro del espacio definido se espera un nuevo movimiento
                   )
                 )
             ))
@@ -424,8 +424,8 @@
       (begin
         (if (and (comprobador x (+ y 18)) (comprobador (+ x 5) (+ y 18)) (comprobador (+ x 8) (+ y 18)));;Comprueba que el movimiento a realizar quede dentro del espacio definido
             (begin
-              ((clear-solid-rectangle ventana)(make-posn x y) 9 18);;En caso de ser verdadero elimina el espacio que ocupa
-              ((draw-pixmap ventana) "Profesor.png" (make-posn x (+ y 2)) "blue");; y se re-dibuja en la dirección ingresada por teclado
+              ((clear-solid-rectangle ventana2)(make-posn x y) 12 17);;En caso de ser verdadero elimina el espacio que ocupa
+              ((draw-pixmap ventana2) "Profesor.png" (make-posn x (+ y 2)) "blue");; y se re-dibuja en la dirección ingresada por teclado
               (sleep 0.1)(movimientonivel2 x (+ y 2) (+ n 1) m x1 y1 ventana ventana2 key puntos item1 item2 item3 item4);; espera el siguiente movimiento
               )
             (begin
@@ -434,7 +434,7 @@
             )
         ))
       (if (= n 50)
-          (movimientopp x y ventana n 0))
+          (movimientopp x y ventana2 n 0))
   )
   
 (define (intronivel2)
@@ -451,16 +451,16 @@
       )
   )
 (define (nivel2);; primer nivel
-  (define win1 (open-viewport "Nivel 2" 300 333));;creación de la ventana
-  ((draw-pixmap win1) "Laberinto.png" (make-posn 0 0) "blue");;dibujo del laberinto
-  ((draw-pixmap win1) "Taller.png" (make-posn 70 133) "blue");;dibujo del item Taller
-  ((draw-pixmap win1) "Taller.png" (make-posn 187 125) "blue")
-  ((draw-pixmap win1) "Profesor.png" (make-posn 36 127) "blue")
-  ((draw-pixmap win1) "Estudiante.png" (make-posn 249 32) "blue");;dibujo del Avatar
-  ((draw-pixmap win1) "0.png" (make-posn 203 294) "blue")
-  ((draw-pixmap win1) "0.png" (make-posn 221 294) "blue")
-  ((draw-pixmap win1) "0.png" (make-posn 239 294) "blue")
-  (movimientonivel2 36 127 0 50 249 32 win1 0 (key-value (get-key-press win1)) 0 0 0 0 0)
+  (define win2 (open-viewport "Nivel 2" 300 333));;creación de la ventana
+  ((draw-pixmap win2) "Laberinto.png" (make-posn 0 0) "blue");;dibujo del laberinto
+  ((draw-pixmap win2) "Taller.png" (make-posn 70 133) "blue");;dibujo del item Taller
+  ((draw-pixmap win2) "Taller.png" (make-posn 187 125) "blue")
+  ((draw-pixmap win2) "Profesor.png" (make-posn 36 127) "blue")
+  ((draw-pixmap win2) "Estudiante.png" (make-posn 249 32) "blue");;dibujo del Avatar
+  ((draw-pixmap win2) "0.png" (make-posn 203 294) "blue")
+  ((draw-pixmap win2) "0.png" (make-posn 221 294) "blue")
+  ((draw-pixmap win2) "0.png" (make-posn 239 294) "blue")
+  (movimientonivel2 36 127 0 50 249 32 0 win2 (key-value (get-key-press win2)) 0 0 0 0 0)
 )
 
 
