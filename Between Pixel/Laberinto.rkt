@@ -5,7 +5,7 @@
 (define (intro);;Animación de carga
   (define wininicio (open-viewport "Between pixels" 600 503))
   ((draw-pixmap wininicio) "Logo.png" (make-posn 0 0) "blue")
-  (sleep 0.1);;yo modifiqué el tiempo para que me fuera más rapido probar lo que hice, pero se me olvidaron los valores que habían antes
+  (sleep 0.1)
   ((draw-solid-rectangle wininicio)(make-posn 270 420) 10 10 "blue");;Cuadro azul
   (sleep 0.1)
   ((draw-solid-rectangle wininicio)(make-posn 290 420) 10 10 "blue")
@@ -259,7 +259,7 @@
   )
 
 (define (nivel1);; primer nivel
-  (define win1 (open-viewport "Nivel 1" 300 333));;creación de la ventana
+  (define win1 (open-viewport "Nivel 1" 300 346));;creación de la ventana
   ((draw-pixmap win1) "Laberinto.png" (make-posn 0 0) "blue");;dibujo del laberinto
   ((draw-pixmap win1) "Taller.png" (make-posn 70 133) "blue");;dibujo del item Taller
   ((draw-pixmap win1) "Taller.png" (make-posn 187 125) "blue")
@@ -271,14 +271,14 @@
   )
 (define (Salida2 puntos1)
   (define salida (open-viewport "Salida - Nivel 1" 600 503))
-  ((draw-pixmap salida) "Salida2.png" (make-posn 0 0) "blue")
-  (puntaje puntos1 100 375 306 0 salida)
-  (get-mouse-click salida)
-  (define x (posn-x (query-mouse-posn salida)))
-  (define y (posn-y (query-mouse-posn salida)))
+  ((draw-pixmap salida2) "Salida2.png" (make-posn 0 0) "blue")
+  (puntaje puntos1 100 375 306 0 salida2)
+  (get-mouse-click salida2)
+  (define x (posn-x (query-mouse-posn salida2)))
+  (define y (posn-y (query-mouse-posn salida2)))
   (if (and (>= x 0) (<= x 600) (>= y 0) (<= y 503))
       (begin
-        (close-viewport salida)
+        (close-viewport salida2)
         (menu)
         )
       )
@@ -340,6 +340,18 @@
                             )
                           )
                       )
+                    (if (and (> a 189) (> b 248) (< a 204) (< b 265))
+                        (begin
+                          ((clear-solid-rectangle ventana)(make-posn 189 248) 15 14)
+                          (if (= item2 0)
+                              (begin
+                                (play-sound "item2.mp3" #t)
+                                (puntaje (+ 250 puntos) 100 203 294 0 ventana)
+                                (movimiento x1 y1 ventana ventana2 (key-value (get-key-press ventana)) (+ puntos 35) item1 (+ item2 1) item3 item4)
+                                )
+                              )
+                          )
+                        )
                     )
                 )
             )
@@ -474,13 +486,14 @@
       )
   )
 (define (nivel2);; primer nivel
-  (define win1 (open-viewport "Nivel 2" 300 333));;creación de la ventana
+  (define win1 (open-viewport "Nivel 2" 300 346));;creación de la ventana
   ((draw-pixmap win1) "Laberinto.png" (make-posn 0 0) "blue");;dibujo del laberinto
-  ((draw-pixmap win1) "Taller.png" (make-posn 160 253) "blue");;dibujo del item Taller
-  ((draw-pixmap win1) "Taller.png" (make-posn 131 192) "blue")
-  ((draw-pixmap win1) "Taller.png" (make-posn 130 99) "blue")
-  ((draw-pixmap win1) "Taller.png" (make-posn 69 223) "blue")
-  ((draw-pixmap win1) "Profesor.png" (make-posn 36 127) "blue")
+  ((draw-pixmap win1) "Parcial.png" (make-posn 160 253) "blue");;dibujo del item Parcial
+  ((draw-pixmap win1) "Parcial.png" (make-posn 131 192) "blue")
+  ((draw-pixmap win1) "Parcial.png" (make-posn 130 99) "blue")
+  ((draw-pixmap win1) "Parcial.png" (make-posn 69 223) "blue")
+  ((draw-pixmap win1) "Profesor.png" (make-posn 36 127) "blue");;dibujo del Diploma
+  ((draw-pixmap win1) "Diploma.png" (make-posn 186 248) "blue")
   ((draw-pixmap win1) "Estudiante.png" (make-posn 249 32) "blue");;dibujo del Avatar
   ((draw-pixmap win1) "0.png" (make-posn 203 294) "blue")
   ((draw-pixmap win1) "0.png" (make-posn 221 294) "blue")
