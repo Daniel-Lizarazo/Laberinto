@@ -270,9 +270,10 @@
   (movimiento  188 247 win1 0(key-value (get-key-press win1)) 0 0 0 0 0);;llamado a la función movimiento {movimiento x y ventana (lector de teclado)}
   )
 (define (Salida2 puntos1)
-  (define salida (open-viewport "Salida - Nivel 1" 600 503))
+  (define salida2 (open-viewport "Salida - Nivel 2" 600 503))
   ((draw-pixmap salida2) "Salida2.png" (make-posn 0 0) "blue")
   (puntaje puntos1 100 375 306 0 salida2)
+  (play-sound "Final.mp3" #t)
   (get-mouse-click salida2)
   (define x (posn-x (query-mouse-posn salida2)))
   (define y (posn-y (query-mouse-posn salida2)))
@@ -461,7 +462,7 @@
             (begin
               ((clear-solid-rectangle ventana)(make-posn x y) 12 17);;En caso de ser verdadero elimina el espacio que ocupa
               ((draw-pixmap ventana) "Profesor.png" (make-posn x (+ y 2)) "blue");; y se re-dibuja en la dirección ingresada por teclado
-              (sleep 0.1)(movimientonivel2 x (+ y 2) (+ n 1) m x1 y1 ventana ventana2 key puntos item1 item2 item3 item4);; espera el siguiente movimiento
+              (sleep 0.1)(movimiento x1 y1 ventana ventana2 key puntos item1 item2 item3 item4)(movimientonivel2 x (+ y 2) (+ n 1) m x1 y1 ventana ventana2 key puntos item1 item2 item3 item4);; espera el siguiente movimiento
               )
             (begin
               (sleep 0.1)(movimientonivel2 x y (+ n 1) m x1 y1 ventana ventana2 key puntos item1 item2 item3 item4);; en caso de que el movimiento no quede dentro del espacio definido se espera un nuevo movimiento
