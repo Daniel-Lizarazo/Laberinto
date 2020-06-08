@@ -177,7 +177,7 @@
   (define salida2 (open-viewport "Salida - Nivel 2" 600 503))
   ((draw-pixmap salida2) "Salida2.png" (make-posn 0 0) "blue")
   (puntaje puntos 100  432 307 0 salida2)
-  (play-sound "Final.mp3" #t)
+  (play-sound "Fin_juego.mp3" #t)
   (get-mouse-click salida2)
   (define x (posn-x (query-mouse-posn salida2)))
   (define y (posn-y (query-mouse-posn salida2)))
@@ -298,7 +298,7 @@
                               ((clear-solid-rectangle ventana)(make-posn 186 251) 15 17)
                               (if (= item5 0)
                                   (begin
-                                    (play-sound "item2.mp3" #t)
+                                    (play-sound "Diploma.mp3" #t)
                                     (puntaje (+ 250 puntos) 100 203 294 0 ventana)
                                     (movimiento x1 y1 ventana ventana2 (key-value (get-key-press ventana)) (+ puntos 250) item1 item2 item3 item4 (+ item5 1))
                                     )
@@ -416,9 +416,8 @@
   ((draw-pixmap win1) "0.png" (make-posn 203 294) "blue")
   ((draw-pixmap win1) "0.png" (make-posn 221 294) "blue")
   ((draw-pixmap win1) "0.png" (make-posn 239 294) "blue")
-  (movimiento  188 250 win1 0 (key-value (get-key-press win1)) 0 0 0 0 0 0);;llamado a la función movimiento {movimiento x y ventana (lector de teclado)}
+  (movimiento  249 32 win1 0 (key-value (get-key-press win1)) 0 0 0 0 0 0);;llamado a la función movimiento {movimiento x y ventana (lector de teclado)}
   )
-
 
 (define (pierde)
   (define gameover (open-viewport "Game Over" 600 503))
@@ -433,7 +432,6 @@
         )
       )
   )
-  
   
 (define (intronivel2)
   (define inivel2 (open-viewport "Intro NV2" 600 503))
