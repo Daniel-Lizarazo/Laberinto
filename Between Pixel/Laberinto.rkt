@@ -528,8 +528,7 @@
 (define (menu)
   (define winmenu (open-viewport "Menú principal" 600 503))
   ((draw-pixmap winmenu) "Menú.png" (make-posn 0 0) "blue")
-  
-    (display "Querido compañero programador, estudiante o profesor, somos concientes de lo malo que quedó, así que si su intención es entenderlo, cómo se dice donde vengo, se Jodio")
+  (display "Querido compañero programador, estudiante o profesor, somos concientes de lo enrredado que quedó, así que si su intención es entenderlo, lamento decirle esto, pero como se dice donde vengo: se jodió")
   (get-mouse-click winmenu)
   (define x (posn-x (query-mouse-posn winmenu)))
   (define y (posn-y (query-mouse-posn winmenu)))
