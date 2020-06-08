@@ -5,13 +5,13 @@
 (define (intro);;Animación de carga
   (define wininicio (open-viewport "Between pixels" 600 503))
   ((draw-pixmap wininicio) "Logo.png" (make-posn 0 0) "blue")
-  (sleep 0.1)
+  (sleep 0.3)
   ((draw-solid-rectangle wininicio)(make-posn 270 420) 10 10 "blue");;Cuadro azul
-  (sleep 0.1)
+  (sleep 0.35)
   ((draw-solid-rectangle wininicio)(make-posn 290 420) 10 10 "blue")
-  (sleep 0.1)
+  (sleep 0.4)
   ((draw-solid-rectangle wininicio)(make-posn 310 420) 10 10 "blue")
-  (sleep 0.1)
+  (sleep 0.5)
   (close-viewport wininicio)
   (menu)
   )
@@ -104,20 +104,6 @@
           (and (> a 91) (> b 183) (< a 123) (< b 208)) (and (> a 183) (> b 268) (< a 208) (< b 269))}
       #t;;se puede mover el personaje
       #f
-      )
-  )
-
-(define (pierde)
-  (define gameover (open-viewport "Game Over" 600 503))
-  ((draw-pixmap gameover) "GameOver.png" (make-posn 0 0) "blue")
-  (get-mouse-click gameover)
-  (define x (posn-x (query-mouse-posn gameover)))
-  (define y (posn-y (query-mouse-posn gameover)))
-  (if (and (>= x 0) (<= x 600) (>= y 0) (<= y 503))
-      (begin
-        (close-viewport gameover)
-        (menu)
-        )
       )
   )
 
