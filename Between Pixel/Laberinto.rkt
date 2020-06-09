@@ -265,18 +265,18 @@
                         )
                       )
                   )
-                (if (and (> a 160) (> b 253) (< a 175) (< b 268))
+                (if (and (> a 160) (> b 253) (< a 175) (< b 268)) ;; Si el objeto principal cae dentro del límite se guarda el objeto de obtención y se suma su respectivo valor al puntaje principal
                     (begin
                       ((clear-solid-rectangle ventana)(make-posn 160 253) 15 14)
                       (if (= item2 0)
                           (begin
                             (play-sound "item2.mp3" #t)
-                            (puntaje (+ 45 puntos) 100 203 294 0 ventana)
+                            (puntaje (+ 45 puntos) 100 203 294 0 ventana);;""
                             (movimiento x1 y1 ventana  ventana2 (key-value (get-key-press ventana)) (+ puntos 45) item1 (+ item2 1) item3 item4 item5)
                             )
                           )
                       )
-                    (if (and (> a 131) (> b 192) (< a 146) (< b 207))
+                    (if (and (> a 131) (> b 192) (< a 146) (< b 207));;""
                         (begin
                           ((clear-solid-rectangle ventana)(make-posn 131 192) 15 14)
                           (if (= item3 0)
@@ -287,7 +287,7 @@
                                 )
                               )
                           )
-                        (if (and (> a 69) (> b 223) (< a 74) (< b 238))
+                        (if (and (> a 69) (> b 223) (< a 74) (< b 238));""
                             (begin
                               ((clear-solid-rectangle ventana)(make-posn 69 223) 15 14)
                               (if (= item4 0)
@@ -298,7 +298,7 @@
                                     )
                                   )
                               )
-                            (if (and (> a 186) (> b 251) (< a 201) (< b 269))
+                            (if (and (> a 186) (> b 251) (< a 201) (< b 269));""
                             (begin
                               ((clear-solid-rectangle ventana)(make-posn 186 251) 15 17)
                               (if (= item5 0)
@@ -403,12 +403,12 @@
 ;;Introducción primer nivel
 ;;--------------------------------------------------
 (define (intronivel1)
-  (define inivel1 (open-viewport "Intro NV1" 600 503))
-  ((draw-pixmap inivel1) "Nivel1.png" (make-posn 0 0) "blue")
-  (get-mouse-click inivel1)
+  (define inivel1 (open-viewport "Intro NV1" 600 503));;Creación de la ventana
+  ((draw-pixmap inivel1) "Nivel1.png" (make-posn 0 0) "blue");;Se dibuja la imagen de introducción del nivel1
+  (get-mouse-click inivel1);;Se espera una instrucción por mouse
   (define x (posn-x (query-mouse-posn inivel1)))
   (define y (posn-y (query-mouse-posn inivel1)))
-  (if (and (>= x 0) (<= x 600) (>= y 0) (<= y 503))
+  (if (and (>= x 0) (<= x 600) (>= y 0) (<= y 503));;Si se da click sobre la ventana se llama a la función nivel1
       (begin
         (close-viewport inivel1)
         (nivel1)
@@ -433,12 +433,12 @@
 ;;Game Over
 ;;--------------------------------------------------
 (define (pierde)
-  (define gameover (open-viewport "Game Over" 600 503))
-  ((draw-pixmap gameover) "GameOver.png" (make-posn 0 0) "blue")
-  (get-mouse-click gameover)
+  (define gameover (open-viewport "Game Over" 600 503));; Creación de la ventana
+  ((draw-pixmap gameover) "GameOver.png" (make-posn 0 0) "blue");; se dibuja la imagen para cuando el jugador pierde
+  (get-mouse-click gameover);;se espera una instrucción por mouse 
   (define x (posn-x (query-mouse-posn gameover)))
   (define y (posn-y (query-mouse-posn gameover)))
-  (if (and (>= x 0) (<= x 600) (>= y 0) (<= y 503))
+  (if (and (>= x 0) (<= x 600) (>= y 0) (<= y 503)) ;;Si se clickea sobre la ventana vuelve a abrir el menú
       (begin
         (close-viewport gameover)
         (menu)
@@ -449,12 +449,12 @@
 ;;Introducción nivel 2
 ;;-------------------------------------------------- 
 (define (intronivel2)
-  (define inivel2 (open-viewport "Intro NV2" 600 503))
-  ((draw-pixmap inivel2) "Nivel2.png" (make-posn 0 0) "blue")
+  (define inivel2 (open-viewport "Intro NV2" 600 503));;Se abre una nueva ventana
+  ((draw-pixmap inivel2) "Nivel2.png" (make-posn 0 0) "blue");;Se dibuja la imagen de introducción del nivel2
   (get-mouse-click inivel2)
   (define x (posn-x (query-mouse-posn inivel2)))
   (define y (posn-y (query-mouse-posn inivel2)))
-  (if (and (>= x 0) (<= x 600) (>= y 0) (<= y 503))
+  (if (and (>= x 0) (<= x 600) (>= y 0) (<= y 503));Si se clickea sobre la imagen se llama a la función nivel2 (empieza el nivel)
       (begin
         (close-viewport inivel2)
         (nivel2)
@@ -483,18 +483,18 @@
 ;;Instrucciones
 ;;--------------------------------------------------
 (define (instrucciones)
-  (define instruc (open-viewport "Instrucciones" 600 503))
-  ((draw-pixmap instruc) "Instrucciones.png" (make-posn 0 0) "blue")
-  (get-mouse-click instruc)
+  (define instruc (open-viewport "Instrucciones" 600 503));;Creación de la ventana
+  ((draw-pixmap instruc) "Instrucciones.png" (make-posn 0 0) "blue");; Se dibuja la imagen de las instrucciones
+  (get-mouse-click instruc);; Se espera una instruccion por mouse
   (define x (posn-x (query-mouse-posn instruc)))
   (define y (posn-y (query-mouse-posn instruc)))
-  (if (and (>= x 490) (<= x 590) (>= y 460) (<= y 495))
+  (if (and (>= x 490) (<= x 590) (>= y 460) (<= y 495));; Si se clickea dentro de las coordenadas establecidas se regresa al menú
       (begin
         (close-viewport instruc)
         (menu)
         )
       (begin
-        (close-viewport instruc)
+        (close-viewport instruc);;De lo contrario se vuelve a llamar a instrucciones (Se realiza para que el código no deje de funcionar)
         (instrucciones)
         )
       )
@@ -505,16 +505,16 @@
 (define (creditos)
   (define cred (open-viewport "Créditos" 600 503))
   ((draw-pixmap cred) "Créditos.png" (make-posn 0 0) "blue")
-  (get-mouse-click cred)
+  (get-mouse-click cred) ;; Se espera una instruccion por mouse
   (define x (posn-x (query-mouse-posn cred)))
   (define y (posn-y (query-mouse-posn cred)))
-  (if (and (>= x 490) (<= x 590) (>= y 20) (<= y 55))
+  (if (and (>= x 490) (<= x 590) (>= y 20) (<= y 55)) ;; Si se clickea dentro de las coordenadas establecidas se regresa al menú
       (begin
         (close-viewport cred)
         (menu)
         )
       )
-  (if (and (>= x 0) (<= x 955) (>= y 0) (<= y 900))
+  (if (and (>= x 0) (<= x 955) (>= y 0) (<= y 900));;De lo contrario se vuelve a llamar a créditos (Se realiza para que el código no deje de funcionar)
       (begin
         (close-viewport cred)
         (creditos)
@@ -528,35 +528,34 @@
 (define (menu)
   (define winmenu (open-viewport "Menú principal" 600 503))
   ((draw-pixmap winmenu) "Menú.png" (make-posn 0 0) "blue")
-  (display "Querido compañero programador, estudiante o profesor, somos concientes de lo enrredado que quedó, así que si su intención es entenderlo, lamento decirle esto, pero como se dice donde vengo: se jodió")
   (get-mouse-click winmenu)
   (define x (posn-x (query-mouse-posn winmenu)))
   (define y (posn-y (query-mouse-posn winmenu)))
-  (if (and (>= x 70) (<= x 270) (>= y 220) (<= y 290))
+  (if (and (>= x 70) (<= x 270) (>= y 220) (<= y 290)) ;;Condiciones para el botón del nivel 1
       (begin
         (close-viewport winmenu)
         (intronivel1)
         )
       )
-  (if (and (>= x 330) (<= x 530) (>= y 220) (<= y 290))
+  (if (and (>= x 330) (<= x 530) (>= y 220) (<= y 290)) ;;Condiciones paara el botón del nivel 2
       (begin
         (close-viewport winmenu)
         (intronivel2)
         )
       )
-  (if (and (>= x 210) (<= x 410) (>= y 350) (<= y 390))
+  (if (and (>= x 210) (<= x 410) (>= y 350) (<= y 390)) ;;Condiciones para el botón de las instrucciones
       (begin
         (close-viewport winmenu)
         (instrucciones)
         )
       )
-  (if (and (>= x 245) (<= x 375) (>= y 420) (<= y 460))
+  (if (and (>= x 245) (<= x 375) (>= y 420) (<= y 460)) ;Condiciones para el botón de los créditos
       (begin
         (close-viewport winmenu)
         (creditos)
         )
       )
-  (if (and (>= x 0) (<= x 955) (>= y 0) (<= y 900))
+  (if (and (>= x 0) (<= x 955) (>= y 0) (<= y 900));;Condiciones para el botón del menú
       (begin
         (close-viewport winmenu)
         (menu)
